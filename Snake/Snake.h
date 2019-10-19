@@ -9,6 +9,7 @@
 
 
 enum class Direction : char {
+	Stop,
 	Up,
 	Down,
 	Left,
@@ -46,7 +47,7 @@ private:
 
 public:
 	Snake()
-		: body({ Snake_Unit(coordinate{3, 0}), Snake_Unit(coordinate{2, 0}), Snake_Unit(coordinate{1, 0}), Snake_Unit(coordinate{0, 0}) })
+		: body({ Snake_Unit(coordinate{3, 0}), Snake_Unit(coordinate{2, 0}), Snake_Unit(coordinate{1, 0}), Snake_Unit(coordinate{0, 0}) }), direction(Direction::Stop)
 	{
 
 	};
