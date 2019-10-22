@@ -6,7 +6,7 @@
 
 #include <iterator>
 #include <vector>
-
+#include <utility>
 
 enum class Direction : char {
 	Stop,
@@ -16,17 +16,12 @@ enum class Direction : char {
 	Right
 };
 
-struct coordinate
-{
-	int x;
-	int y;
-};
+using coordinate = std::pair<int, int>;
 
 class Snake_Unit
 {
 private:
 	coordinate location;
-	static sf::Sprite sprite;
 
 public:
 	Snake_Unit(coordinate loc);
@@ -35,23 +30,19 @@ public:
 	int get_y() const;
 	void set_x(int x);
 	void set_y(int y);
-
-	sf::Sprite& ref_sprite();
 };
 
 class Snake
 {
 private:
+	static sf::Sprite sprite;
+
 	std::vector<Snake_Unit> body;
 	Direction direction;
 
 public:
-	Snake()
-		: body({ Snake_Unit(coordinate{3, 0}), Snake_Unit(coordinate{2, 0}), Snake_Unit(coordinate{1, 0}), Snake_Unit(coordinate{0, 0}) }), direction(Direction::Stop)
-	{
-
-	};
-	void tick();
+	Snake();
+	void update();
 	void draw(sf::RenderWindow& window);
 	void set_direction(Direction dir);
 };

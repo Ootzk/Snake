@@ -4,37 +4,37 @@ Snake_Unit::Snake_Unit(coordinate loc)
 	: location(loc)
 {
 
-
 }
 
 int Snake_Unit::get_x() const
 {
-	return location.x;
+	return location.first;
 }
 
 int Snake_Unit::get_y() const
 {
-	return location.y;
+	return location.second;
 }
 
 void Snake_Unit::set_x(int x)
 {
-	location.x = x;
+	location.first = x;
 }
 
 void Snake_Unit::set_y(int y)
 {
-	location.y = y;
+	location.second = y;
 }
 
-sf::Sprite & Snake_Unit::ref_sprite()
+sf::Sprite Snake::sprite = get_tile(Tile::Snake);
+
+Snake::Snake()
+	: body({ Snake_Unit(coordinate{0, 0}) }), direction(Direction::Stop)
 {
-	return sprite;
+
 }
 
-sf::Sprite Snake_Unit::sprite = get_tile(Tile::Snake);
-
-void Snake::tick()
+void Snake::update()
 {
 	for (auto unit = body.rbegin(); unit != std::prev(body.rend()); ++unit) {
 		unit->set_x(std::next(unit)->get_x());
@@ -60,13 +60,16 @@ void Snake::tick()
 	case Direction::Right: 
 		head.set_x(head.get_x() + 1);
 		break;
+
+	default:
+		break;
 	}
 }
 
 void Snake::draw(sf::RenderWindow & window)
 {
 	for (auto unit : body) {
-		auto body_tile = unit.ref_sprite();
+		auto body_tile = this->sprite;
 		body_tile.setPosition(unit.get_x() * box_length, unit.get_y() * box_length);
 		window.draw(body_tile);
 	}
