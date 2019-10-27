@@ -1,21 +1,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Snake.h"
-#include "Tile.h"
-
-int num_width = 30, num_height = 20;
-int width = box_length * num_width;
-int height = box_length * num_height;
-
-void draw_background(sf::RenderWindow& window, sf::Sprite& background_tile)
-{
-	for (int i = 0; i < num_width; ++i) {
-		for (int j = 0; j < num_height; ++j) {
-			background_tile.setPosition(i * box_length, j * box_length);
-			window.draw(background_tile);
-		}
-	}
-};
 
 int main()
 {

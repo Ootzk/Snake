@@ -123,19 +123,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Snake.cpp" />
-    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Snake.h" />
-    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="images\gray.png" />
     <Image Include="images\green.png" />
     <Image Include="images\red.png" />
     <Image Include="images\white.png" />

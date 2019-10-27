@@ -1,28 +1,40 @@
 #include "Map.h"
 
-sf::Sprite Map::sprite = get_tile(Tile::BackGround);
-
-Map::Map(int map_width, int map_height)
-	:map_size{map_width, map_height}
+Map::Map()
+	: tile_background(create_Tile(Tile::BackGround)), tile_obstacle(create_Tile(Tile::Obstacle)), tile_fruit(create_Tile(Tile::Fruit))
 {
-
 }
 
 Map::~Map()
 {
 }
 
-std::pair<int, int> Map::get_map_size()
+void Map::update(bool newfruit)
 {
-	return map_size;
+	if (newfruit == true) {
+		fruit = coordinate_generator.create_randomCoordinate();
+	}
 }
 
 void Map::draw(sf::RenderWindow& window)
 {
 	for (int i = 0; i < num_width; ++i) {
-		for (int j = 0; j < num_height; ++j) {
-			sprite.setPosition(i * box_length, j * box_length);
-			window.draw(sprite);
+		for (int j = 0; i < num_height; ++j) {
+			tile_background.setPosition(i * Tile_length, j * Tile_length);
+			window.draw(tile_background);
 		}
 	}
+
+	tile_fruit.setPosition(fruit.get_x() * Tile_length, fruit.get_y() * Tile_length);
+	window.draw(tile_fruit);
+}
+
+const Coordinate Map::get_fruit() const
+{
+	return fruit;
+}
+
+const std::vector<Coordinate>& Map::get_obstacles() const
+{
+	return obstacles;
 }

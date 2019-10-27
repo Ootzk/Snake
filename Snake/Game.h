@@ -6,6 +6,7 @@
 
 #include "Map.h"
 #include "Snake.h"
+#include "Data.h"
 
 class Game
 {
@@ -14,8 +15,16 @@ private:
 	Map map;
 	Snake snake;
 
+private:
+	bool collide_obstacles();
+	bool ate_fruit();
+
 public:
-	Game(std::pair<int, int> map_size);
-	//void draw();
+	Game();
+	~Game();
+
+	void init();
+	void update();
+	void draw();
 };
 

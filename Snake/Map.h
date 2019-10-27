@@ -2,28 +2,32 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <utility>
+#include <algorithm>
+#include <vector>
 
-#include "Tile.h"
+#include "Data.h"
+#include "Snake.h"
 
 class Map
 {
 private:
-	static sf::Sprite sprite;
+	CoordinateFactory coordinate_generator;
 
-	std::pair<int, int> map_size;
+private:
+	sf::Sprite tile_background;
+	sf::Sprite tile_obstacle;
+	sf::Sprite tile_fruit;
+
+	std::vector<Coordinate> obstacles;
+	Coordinate fruit;
 
 public:
-	Map(int map_width, int map_height);
+	Map();
 	~Map();
 
-	std::pair<int, int> get_map_size();
-
+	void update(bool newfruit);
 	void draw(sf::RenderWindow& window);
-};
 
-class MapFactory
-{
-private:
-
+	const Coordinate get_fruit() const;
+	const std::vector<Coordinate>& get_obstacles() const;
 };
