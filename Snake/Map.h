@@ -25,7 +25,7 @@ public:
 	Map();
 	~Map();
 
-	void update(bool newfruit);
+	void update(bool newfruit = false);
 	void draw(sf::RenderWindow& window);
 
 	const Coordinate get_fruit() const;
