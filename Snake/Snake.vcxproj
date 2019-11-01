@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{457B8FE7-63A5-497D-8846-89E3C4CCD2AD}</ProjectGuid>
+    <ProjectGuid>{C558F57A-6C80-4B7B-AFFF-23E0761D9435}</ProjectGuid>
     <RootNamespace>Snake</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -123,23 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Data.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameSystem.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Snake.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="images\gray.png" />
-    <Image Include="images\green.png" />
-    <Image Include="images\red.png" />
-    <Image Include="images\white.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

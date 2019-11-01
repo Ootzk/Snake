@@ -1,33 +1,32 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
-#include <algorithm>
 #include <vector>
 
-#include "Data.h"
+#include "GameSystem.h"
 #include "Snake.h"
 
-class Map
+
+class Map : public Grid
 {
 private:
 	CoordinateFactory coordinate_generator;
 
 private:
-	sf::Sprite tile_background;
-	sf::Sprite tile_obstacle;
-	sf::Sprite tile_fruit;
-
-	std::vector<Coordinate> obstacles;
 	Coordinate fruit;
 
+private:
+	bool ate() const;
+	bool collide() const;
+
 public:
-	Map();
-	~Map();
+	Map(unsigned int width, unsigned int height);
+	virtual ~Map();
 
-	void update(bool newfruit = false);
-	void draw(sf::RenderWindow& window);
+	void load(Snake &snake);
+	//void load(Wall& wall);
 
-	const Coordinate get_fruit() const;
-	const std::vector<Coordinate>& get_obstacles() const;
+	//void init(map_file m);
+	//void update(Snake& snake);
+
 };
+

@@ -1,29 +1,29 @@
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
-#include "Game.h"
-#include "Map.h"
+#include "GameSystem.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(360, 360), "Snake Game");
+	int width = 8;
+	int height = 5;
+	CoordinateFactory fac(width, height);
 
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
-		}
-
-		sf::Sprite test = create_Tile(Tile::Fruit);
-		test.setPosition(0, 0);
-
-		window.clear();
-		window.draw(test);
-		window.display();
+	std::cout << "Random Coordinate Test" << std::endl;
+	for (int i = 0; i < 10; ++i) {
+		Coordinate generated = fac.generate_randomCoordinate();
+		std::cout << "(" << generated.get_x() << ", " << generated.get_y() << ")" << std::endl;
 	}
 
-	return 0;
+	std::cout << "up down left right Test" << std::endl;
+	Coordinate center(width / 2, height / 2);
+	std::cout << "base coordinate: " << "(" << center.get_x() << ", " << center.get_y() << ")" << std::endl;
+	Coordinate up = fac.generate_upCoordinate(center);
+	std::cout << "up coordinate: " << "(" << up.get_x() << ", " << up.get_y() << ")" << std::endl;
+	Coordinate down = fac.generate_downCoordinate(center);
+	std::cout << "down coordinate: " << "(" << down.get_x() << ", " << down.get_y() << ")" << std::endl;
+
+	std::cout << "Grid Test" << std::endl;
+	Grid grid(width, height);
+
+	std::cout << "hello" << std::endl;
 }

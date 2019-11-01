@@ -1,59 +1,56 @@
 #include "Snake.h"
 
-Snake::Snake()
-	: tile_snake(create_Tile(Tile::Snake)), body({ Coordinate{num_width / 2, num_height / 2} }), direction(Direction::Stop)
+Snake::~Snake()
 {
+}
+
+void Snake::grow()
+{
+	Coordinate new_tail;
+
+
 
 }
 
 void Snake::update(Direction new_direction)
 {
-	for (auto unit = body.rbegin(); unit != std::prev(body.rend()); ++unit) {
-		unit = std::next(unit);
-	}
+	auto update_location = [&]() -> void {
+		for (auto it = location.rbegin(); it != location.rend(); ++it) {
+			*it = *std::next(it);
+		}
+	};
 
-	Coordinate& head = body.front();
-	switch (direction)
-	{
-	case Direction::Up:
-		head.move_Up();
+	switch (direction) {
+	case Direction::up:
+		update_location();
+		direction = new_direction;
 		break;
 		
-	case Direction::Down:
-		head.move_Down();
+	case Direction::down:
+		update_location();
+		direction = new_direction;
 		break;
-		
-	case Direction::Left: 
-		head.move_Left();
+
+	case Direction::left:
+		update_location();
+		direction = new_direction;
 		break;
-		
-	case Direction::Right: 
-		head.move_Right();
+
+	case Direction::right:
+		update_location();
+		direction = new_direction;
 		break;
 
 	default:
+		direction = new_direction;
 		break;
 	}
 
-	direction = new_direction;
-}
 
-void Snake::draw(sf::RenderWindow & window)
-{
-	for (auto unit : body) {
-		this->tile_snake.setPosition(unit.get_x() * Tile_length, unit.get_y() * Tile_length);
-		window.draw(this->tile_snake);
-	}
-}
+	for (auto it = location.rbegin(); it != location.rend(); ++it) {
+		switch (direction) {
+		case Direction::up:
 
-bool Snake::collide(const Coordinate& object)
-{
-	auto it = std::find(body.begin(), body.end(), object);
-
-	if (it != body.end()) {
-		return true;
-	}
-	else {
-		return false;
+		}
 	}
 }

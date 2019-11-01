@@ -1,26 +1,25 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
-#include <algorithm>
 #include <iterator>
 #include <vector>
 
-#include "Data.h"
+#include "GameSystem.h"
 #include "Map.h"
 
 class Snake
 {
 private:
-	sf::Sprite tile_snake;
-
-	std::vector<Coordinate> body;
-	Direction direction;
+	std::vector<Coordinate> location;
+	Direction direction = Direction::stop;
 
 public:
-	Snake();
-	void update(Direction new_direction);
-	void draw(sf::RenderWindow& window);
+	Snake() = default;
+	virtual ~Snake();
 
-	bool collide(const Coordinate& object);
+	friend void Map::load(Snake& snake);
+
+	//void init(map_file m);
+	void grow();
+	void update(Direction new_direction);
 };
+
